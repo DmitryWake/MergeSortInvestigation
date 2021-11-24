@@ -1,12 +1,14 @@
-import java.util.*
+import java.lang.ref.Cleaner
 import kotlin.math.abs
 import kotlin.random.Random
 
 class MergeSortInvestigation {
 
+    private val random = Random(System.currentTimeMillis())
+
     private fun generateList(size: Int): List<Int> {
         return List(size) {
-            Random.nextInt()
+            random.nextInt()
         }
     }
 
@@ -15,21 +17,20 @@ class MergeSortInvestigation {
 
         for (i in 0 until testsCount) {
             val size = startSize + i * stepSize
-            val list = generateList(size)
 
-            result.add(testList(list))
+            result.add(testList(generateList(size)))
         }
 
         return result
     }
 
     private fun testList(list: List<Int>): Long {
-        val startTime = Date().time
+        val startTime = System.nanoTime()
         val sortedList = mergeSort(list)
-        val endTime = Date().time
+        val endTime = System.nanoTime()
 
         if (sortedList.isNotSorted) throw IllegalStateException("Output list is not sorted")
 
-        return abs(endTime - startTime)
+        return (endTime - startTime) / 1000
     }
 }

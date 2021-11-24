@@ -1,7 +1,7 @@
 fun main() {
     val mergeSortInvestigation = MergeSortInvestigation()
 
-    val result = mergeSortInvestigation.investigate(3000, 100, 100)
+    val result = mergeSortInvestigation.investigate(2000, 1000, 50)
 
     println(result)
 }
