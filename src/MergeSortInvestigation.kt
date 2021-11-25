@@ -1,5 +1,6 @@
 import java.lang.ref.Cleaner
 import kotlin.math.abs
+import kotlin.math.roundToLong
 import kotlin.random.Random
 
 class MergeSortInvestigation {
@@ -22,6 +23,15 @@ class MergeSortInvestigation {
         }
 
         return result
+    }
+
+    fun investigateOneSize(size: Int, testsCount: Int): Long {
+        var timeSum = 0.0
+        repeat(testsCount) {
+            timeSum += testList(generateList(size)).toDouble() / testsCount
+        }
+
+        return timeSum.roundToLong()
     }
 
     private fun testList(list: List<Int>): Long {
